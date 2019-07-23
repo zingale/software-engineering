@@ -7,5 +7,4 @@ subroutine compute(x, y, z) bind(C, name="compute")
 
   z = x + y
 
-  return
 end subroutine compute
