@@ -23,7 +23,7 @@ A single-user interaction with git:
   directory under version control
 
   ```
-  $ git init .
+  $ git init
   ```
 
   If we do `ls` at this point, we see nothing.  However, there is a
@@ -105,7 +105,7 @@ A single-user interaction with git:
   the function.  Now we need to commit this again:
 
   ```
-  $ git commit awesome.py 
+  $ git commit awesome.py
   ```
 
   And `git log` will show this commit as separate from the one we made
@@ -123,7 +123,7 @@ A single-user interaction with git:
   $ git checkout dbc2916bb609759d54ca7668558bc639bab9b60b
   ```
 
-  Look at the file, and you'll see it is different.  
+  Look at the file, and you'll see it is different.
 
   If you want to go back to the latest version, you can checkout `master`
   -- that's the name of the main "branch" git recognizes.
@@ -134,42 +134,72 @@ A single-user interaction with git:
 
 ## Importing to Github
 
+* Now we want to put our project on github so others can see it, use
+  it, and collaborate with you.
 
+    1. Log onto your github account and in the upper right, click on
+       the "+" menu and select "New Repository".
 
+    2. On the next screen, make the repository name the same as our
+       local project, "myproject".
+
+    3. We'll leave everything else alone, since we are going to import
+       a project.
+
+  Github tells us what to do next.  We'll follow the "..or push an
+  exisiting repository from the command line".
+
+  In our local repository, we will do:
+
+  ```
+  git remote add origin git@github.com:zingale/myproject.git
+  git push -u origin master
+  ```
+
+  (You might see it give you this in terms of `https` instead of an
+  ssh login, depending on how you configured github.)
+
+* Refresh your github webpage and you will see your project files now!
+
+* Working with remotes:
+
+  Github appears as a "remote" for us.  We can see this via:
+  ```
+  git remote -v
+  ```
 
 ## Working with branches
 
-  Suppose we want to do some development that might be invasive and we
-  don't want to break the working code on "master".  We can use a
-  branch for this -- thing of this as a parallel development that can
-  track the master branch and merge back and forth with it.  We can
-  work on this new branch until we are happy, and then incorporate our
-  changes back to `master`.
- 
-  Here we'll create a new branch called `development`:
+Suppose we want to do some development that might be invasive and we
+don't want to break the working code on "master".  We can use a
+branch for this -- thing of this as a parallel development that can
+track the master branch and merge back and forth with it.  We can
+work on this new branch until we are happy, and then incorporate our
+changes back to `master`.
+
+* Let's create a new branch called `development`:
 
   ```
   $ git checkout -b development
   ```
 
-  Now make some changes to `awesome.py` and commit them.
+* Now make some changes to `awesome.py` and commit them.
 
   ```
   $ emacs -nw awesome.py
   $ git commit awesome.py
   ```
 
-  If you go back to `master`, you won't see these changes:
+* If you go back to `master`, you won't see these changes:
 
   ```
   $ git checkout master
   $ more awesome.py
   ```
 
-  If you are happy with the changes, you can do a merge.  While on
+* If you are happy with the changes, you can do a merge.  While on
   `master`, merge `development` into `master` with:
 
   ```
   $ git merge development
   ```
-
