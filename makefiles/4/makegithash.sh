@@ -2,22 +2,15 @@
 
 HASH=`git rev-parse HEAD`
 
-cat > githash.f90 <<EOF
-module gitstuff
+cat > githash.cpp <<EOF
+#include <string>
 
-  implicit none
+std::string gitstuff() {
 
-   integer :: HASHLEN=${#HASH}
+  std::string hash = "${HASH}";
 
-contains
-
-  function githash() result (hash)
-    implicit none
-
-    character (len=HASHLEN) :: hash
-    hash = "${HASH}"
-
-    return
-  end function githash
-end module gitstuff
+  return hash;
+}
 EOF
+
+

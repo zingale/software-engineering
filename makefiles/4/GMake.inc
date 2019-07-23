@@ -1,3 +1,3 @@
-main.o: compute.o githash.o
+main.o: make_example.H githash.H
 print_result.o: compute.o
 
