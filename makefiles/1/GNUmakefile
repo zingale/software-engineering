@@ -4,8 +4,8 @@
 ALL: main
 
 # explicitly list the rules for making each of the object files
-main.o:
-	gfortran -c main.f90
+main.o: main.cpp 
+	g++ -c main.cpp
 
 compute.o: compute.f90
 	gfortran -c compute.f90
@@ -16,4 +16,4 @@ print_result.o: print_result.f90
 
 # explicitly write the rule for linking together the executable
 main: main.o compute.o print_result.o
-	gfortran -o main main.o compute.o print_result.o
+	g++ -o main main.o compute.o print_result.o -lgfortran

@@ -1,10 +1,11 @@
-function compute(x, y) result (z)
+subroutine compute(x, y, z) bind(C, name="compute")
 
   implicit none
 
-  double precision :: x, y, z
+  double precision, intent(in) :: x, y
+  double precision, intent(out) :: z
 
   z = x + y
 
   return
-end function compute
+end subroutine compute
