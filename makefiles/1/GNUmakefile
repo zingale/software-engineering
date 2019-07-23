@@ -4,7 +4,7 @@
 ALL: main
 
 # explicitly list the rules for making each of the object files
-main.o: main.cpp 
+main.o: main.cpp
 	g++ -c main.cpp
 
 compute.o: compute.f90
