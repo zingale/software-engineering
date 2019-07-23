@@ -5,13 +5,13 @@ module compute_module
   double precision, save :: min_value
 
 contains
-  function compute(x, y) result (z)
+  subroutine compute(x, y, z) bind(C, name="compute")
 
-    double precision :: x, y, z
+    double precision, intent(in) :: x, y
+    double precision, intent(out) :: z
 
     min_value = min(x,y)
     z = x + y
 
-    return
-  end function compute
+  end subroutine compute
 end module compute_module
